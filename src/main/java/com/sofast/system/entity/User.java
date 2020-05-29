@@ -9,6 +9,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -36,6 +38,9 @@ public class User extends BaseEntity implements UserDetails {
     @TableField("status")
     private Long status;
 
+    @TableField(exist = false)
+    private List<Resource> resources;
+
 
     @Override
     public String getUsername() {
@@ -44,22 +49,22 @@ public class User extends BaseEntity implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     public void setUsername(String username) {
@@ -68,8 +73,7 @@ public class User extends BaseEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        return null;
+        return resources;
     }
 
 
@@ -87,6 +91,14 @@ public class User extends BaseEntity implements UserDetails {
 
     public void setStatus(Long status) {
         this.status = status;
+    }
+
+    public List<Resource> getResources() {
+        return resources;
+    }
+
+    public void setResources(List<Resource> resources) {
+        this.resources = resources;
     }
 
     @Override

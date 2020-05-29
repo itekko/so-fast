@@ -34,4 +34,17 @@
         name, url, type, permission, orders, icon, parent_id
     </sql>
 
+
+    <!--通过用户ID获取资源列表-->
+    <select id="selectByUserId" resultType="com.sofast.system.entity.Resource">
+        select <include refid="Base_Column_List"/>
+        from t_system_resource where id in (select distinct resource_id
+            from t_system_role_resource
+            where role_id in (
+                select distinct role_id
+                from t_system_user_role
+                where user_id = #{userId}
+        ))
+    </select>
+
 </mapper>

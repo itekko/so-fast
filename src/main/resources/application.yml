@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/so_fast?useUnicode=true&useSSL=false&characterEncoding=utf8
+    username: root
+    password: root
+    hikari:
+      connection-init-sql: SET NAMES utf8mb4;
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  security:
+    user:
+      name: root
+      password: root
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*Mapper.xml
+  typeAliasesPackage: com.sofast.**.entity
+  type-enums-package: com.sofast.**.enums
+  global-config:
+    banner: false
+    db-config:
+      logic-delete-value: 1 #默认值1
+      logic-not-delete-value: 0 #默认值0
+      id-type: id_worker
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false

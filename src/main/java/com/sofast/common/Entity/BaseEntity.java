@@ -20,7 +20,7 @@ public class BaseEntity implements Serializable {
      */
     @ApiModelProperty(value = "主键ID")
     @TableId
-    private Long id;
+    private String id;
 
     /**
      * 版本
@@ -47,7 +47,7 @@ public class BaseEntity implements Serializable {
      */
     @ApiModelProperty(value = "创建人ID")
     @TableField(fill = FieldFill.INSERT)
-    private Long createBy;
+    private String createBy;
 
     /**
      * 创建时间
@@ -63,7 +63,7 @@ public class BaseEntity implements Serializable {
      */
     @ApiModelProperty(value = "更新人ID")
     @TableField(fill = FieldFill.UPDATE)
-    private Long updateBy;
+    private String updateBy;
 
     /**
      * 更新时间
@@ -74,12 +74,11 @@ public class BaseEntity implements Serializable {
     @TableField(fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 
-
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -107,11 +106,11 @@ public class BaseEntity implements Serializable {
         this.deleteFlag = deleteFlag;
     }
 
-    public Long getCreateBy() {
+    public String getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(Long createBy) {
+    public void setCreateBy(String createBy) {
         this.createBy = createBy;
     }
 
@@ -123,11 +122,11 @@ public class BaseEntity implements Serializable {
         this.createTime = createTime;
     }
 
-    public Long getUpdateBy() {
+    public String getUpdateBy() {
         return updateBy;
     }
 
-    public void setUpdateBy(Long updateBy) {
+    public void setUpdateBy(String updateBy) {
         this.updateBy = updateBy;
     }
 

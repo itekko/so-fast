@@ -13,6 +13,7 @@
     <result column="update_by" property="updateBy" />
     <result column="update_time" property="updateTime" />
         <result column="name" property="name" />
+        <result column="code" property="code" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -25,7 +26,22 @@
         create_time,
         update_by,
         update_time,
-        name
+        name,
+        code
+    </sql>
+
+    <!-- 通用查询带t结果列 -->
+    <sql id="Base_table_Column_List">
+        t.id,
+        t.versions,
+        t.description,
+        t.delete_flag,
+        t.create_by,
+        t.create_time,
+        t.update_by,
+        t.update_time,
+        t.name,
+        t.code
     </sql>
 
 </mapper>

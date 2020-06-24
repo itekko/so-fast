@@ -1,0 +1,6 @@
+docker run \
+--rm \
+-d \
+-p 8080:8080 \
+-m 512m \
+127.0.0.1:5000/com.sofast/so-fast:1.0.0

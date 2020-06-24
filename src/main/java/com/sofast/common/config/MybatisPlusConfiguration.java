@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * @author ekko
  * mybatis-plus配置类
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @MapperScan("com.sofast.*.mapper")
 public class MybatisPlusConfiguration {
 

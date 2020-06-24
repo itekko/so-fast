@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiModelProperty;
  * </p>
  *
  * @author ekko
- * @since 2020-05-29
+ * @since 2020-06-24
  */
 @TableName("t_system_log")
 @ApiModel(value="Log对象", description="系统日志 ")
@@ -22,7 +22,7 @@ public class Log extends BaseEntity {
 
     @ApiModelProperty(value = "用户ID")
     @TableField("user_id")
-    private Long userId;
+    private String userId;
 
     @ApiModelProperty(value = "用户操作")
     @TableField("operation")
@@ -48,11 +48,11 @@ public class Log extends BaseEntity {
     @TableField("ip_address")
     private String ipAddress;
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
     public String getOperation() {

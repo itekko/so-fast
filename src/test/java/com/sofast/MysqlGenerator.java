@@ -80,7 +80,7 @@ public class MysqlGenerator {
         InjectionConfig cfg = new InjectionConfig() {
             @Override
             public void initMap() {
-                // to do nothing
+
             }
         };
         List<FileOutConfig> focList = new ArrayList<>();
@@ -104,7 +104,7 @@ public class MysqlGenerator {
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setSuperEntityClass("com.sofast.common.Entity.BaseEntity");
         strategy.setEntityLombokModel(false);
-        //strategy.setSuperControllerClass("com.baomidou.mybatisplus.samples.generator.common.BaseController");
+        strategy.setSuperControllerClass("com.sofast.common.controller.BaseController");
         strategy.setInclude(scanner("表名"));
         strategy.setSuperEntityColumns("id","versions","description","delete_flag","create_by","create_time","update_by","update_time");
         strategy.setControllerMappingHyphenStyle(true);

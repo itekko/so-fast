@@ -1,5 +1,6 @@
 package com.sofast.common.result;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -11,6 +12,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @author Aron
  * @date 2017年5月9日
  */
+@ApiModel(value = "返回响应数据")
 public class Result<T> {
 
     public final static Integer CODE_SUCCESS = 0;

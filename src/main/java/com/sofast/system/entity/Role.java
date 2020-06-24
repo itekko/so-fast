@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiModelProperty;
  * </p>
  *
  * @author ekko
- * @since 2020-05-29
+ * @since 2020-06-24
  */
 @TableName("t_system_role")
 @ApiModel(value="Role对象", description="系统角色表")
@@ -24,6 +24,10 @@ public class Role extends BaseEntity {
     @TableField("name")
     private String name;
 
+    @ApiModelProperty(value = "角色编码")
+    @TableField("code")
+    private String code;
+
     public String getName() {
         return name;
     }
@@ -31,11 +35,19 @@ public class Role extends BaseEntity {
     public void setName(String name) {
         this.name = name;
     }
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     @Override
     public String toString() {
         return "Role{" +
         "name=" + name +
+        ", code=" + code +
         "}";
     }
 }

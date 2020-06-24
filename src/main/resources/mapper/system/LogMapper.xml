@@ -31,7 +31,32 @@
         create_time,
         update_by,
         update_time,
-        user_id, operation, times, method, url, params, ip_address
+        user_id,
+        operation,
+        times,
+        method,
+        url,
+        params,
+        ip_address
+    </sql>
+
+    <!-- 通用查询带t结果列 -->
+    <sql id="Base_table_Column_List">
+        t.id,
+        t.versions,
+        t.description,
+        t.delete_flag,
+        t.create_by,
+        t.create_time,
+        t.update_by,
+        t.update_time,
+        t.user_id,
+        t.operation,
+        t.times,
+        t.method,
+        t.url,
+        t.params,
+        t.ip_address
     </sql>
 
 </mapper>

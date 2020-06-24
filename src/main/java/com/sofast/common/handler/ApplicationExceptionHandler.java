@@ -5,8 +5,13 @@ import com.sofast.common.enums.EnumErrorCode;
 import com.sofast.common.result.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 异常处理器
@@ -39,6 +44,24 @@ public class ApplicationExceptionHandler {
         }
         return Result.build(EnumErrorCode.unknowFail.getCode(), e.getMessage());
     }
+
+
+    /**
+     * 全局异常
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Result<String> MethodArgumentNotValidException(MethodArgumentNotValidException e) {
+        if(log.isDebugEnabled()){
+            log.debug("全局异常处理:Exception[{}]:{}",e.getClass(),e.getMessage());
+        }
+        List<ObjectError> allErrors = e.getBindingResult().getAllErrors();
+
+        String message = allErrors.stream().map(it -> it.getDefaultMessage()).collect(Collectors.joining("、"));
+
+        return Result.build(EnumErrorCode.illegalArgument.getCode(), message);
+    }
+
+
 
 
 

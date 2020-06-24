@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author ekko
- * @since 2020-05-29
+ * @since 2020-06-24
  */
 public interface ILogService extends IService<Log> {
 

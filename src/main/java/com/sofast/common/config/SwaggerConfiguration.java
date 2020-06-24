@@ -13,7 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * @author ekko
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @EnableSwagger2
 public class SwaggerConfiguration{
 

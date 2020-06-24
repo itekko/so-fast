@@ -3,6 +3,8 @@ package com.sofast.common.config;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
@@ -15,7 +17,6 @@ import com.sofast.common.constants.DatePatternContants;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,7 +27,7 @@ import java.time.format.DateTimeFormatter;
  * @author ekko
  * spring 容器配置类
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class SpringConfiguration {
 
 
@@ -48,10 +49,20 @@ public class SpringConfiguration {
         javaTimeModule.addDeserializer(LocalDate.class,new LocalDateDeserializer(DateTimeFormatter.ofPattern(DatePatternContants.DEFAULT_DATE_FORMAT)));
         javaTimeModule.addDeserializer(LocalTime.class,new LocalTimeDeserializer(DateTimeFormatter.ofPattern(DatePatternContants.DEFAULT_TIME_FORMAT)));
         objectMapper.registerModule(javaTimeModule).registerModule(new ParameterNamesModule());
+
+        SimpleModule simpleModule = new SimpleModule();
+        simpleModule.addSerializer(Long.class, ToStringSerializer.instance);
+        simpleModule.addSerializer(Long.TYPE, ToStringSerializer.instance);
+        objectMapper.registerModule(simpleModule);
         return objectMapper;
     }
 
+    /*@Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 
+*/
 
 
 

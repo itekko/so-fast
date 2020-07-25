@@ -16,6 +16,9 @@ public enum EnumErrorCode {
     , pageNotFound(404, "页面不存在")
 
 
+    , menuNotRootNode(20000, "您所查询的菜单树没有根节点")
+
+
     , duplicateKeyExist(40000, "记录已存在")
 
     , genReadConfigError(40100, "代码生成器获取配置文件失败")

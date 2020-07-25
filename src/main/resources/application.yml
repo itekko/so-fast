@@ -1,14 +1,30 @@
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/so_fast?useUnicode=true&useSSL=false&characterEncoding=utf8
-    username: root
-    password: root
-    hikari:
-      connection-init-sql: SET NAMES utf8mb4;
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+  shardingsphere:
+    datasource:
+      names: ds0
+      ds0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/so_fast?useUnicode=true&useSSL=false&characterEncoding=utf8
+        username: root
+        password: root
+    sharding:
+      default-data-source-name: ds0
+      tables:
+        t_system_log:
+          logicTable: t_system_log
+          actual-data-nodes: ds0.t_system_log,ds0.t_system_log_202007
+          table-strategy:
+            standard:
+              shardingColumn: create_time
+              preciseAlgorithmClassName: com.sofast.common.algorithm.LogSingleKeyTableShardingAlgorithm
+              rangeAlgorithmClassName: com.sofast.common.algorithm.LogSingleKeyTableShardingAlgorithm
+    props:
+      sql:
+        show: true
 
 
 mybatis-plus:

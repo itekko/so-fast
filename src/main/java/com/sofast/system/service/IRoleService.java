@@ -1,7 +1,9 @@
 package com.sofast.system.service;
 
-import com.sofast.system.entity.Role;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.sofast.system.entity.Role;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IRoleService extends IService<Role> {
 
+    public List<Role> selectListByUserId(String userId);
 }

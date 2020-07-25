@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sofast.system.mapper.RoleMapper">
+<mapper namespace="com.sofast.system.mapper.ResourceMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.sofast.system.entity.Role">
+    <resultMap id="BaseResultMap" type="com.sofast.system.entity.Resource">
     <result column="id" property="id" />
     <result column="versions" property="versions" />
     <result column="description" property="description" />
@@ -13,7 +13,12 @@
     <result column="update_by" property="updateBy" />
     <result column="update_time" property="updateTime" />
         <result column="name" property="name" />
-        <result column="code" property="code" />
+        <result column="url" property="url" />
+        <result column="type" property="type" />
+        <result column="permission" property="permission" />
+        <result column="orders" property="orders" />
+        <result column="icon" property="icon" />
+        <result column="parent_id" property="parentId" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -27,7 +32,12 @@
         update_by,
         update_time,
         name,
-        code
+        url,
+        type,
+        permission,
+        orders,
+        icon,
+        parent_id
     </sql>
 
     <!-- 通用查询带t结果列 -->
@@ -41,13 +51,22 @@
         t.update_by,
         t.update_time,
         t.name,
-        t.code
+        t.url,
+        t.type,
+        t.permission,
+        t.orders,
+        t.icon,
+        t.parent_id
     </sql>
 
-    <select id="selectListByUserId" resultMap="BaseResultMap">
+    <!--根据用户ID获取资源列表-->
+    <select id="selectListByUserId" resultType="com.sofast.system.entity.Resource">
         select <include refid="Base_Column_List"/>
-        from t_system_role
-        where id in (select role_id from t_system_user_role where user_id = #{userId})
+        from t_system_resource where id in (
+            select resource_id from t_system_role_resource where role_id in (
+                select role_id from t_system_user_role where user_id = #{userId}
+            )
+        )
     </select>
 
 </mapper>

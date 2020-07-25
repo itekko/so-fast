@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @author ekko
@@ -56,7 +56,7 @@ public class BaseEntity implements Serializable {
     @TableField(fill = FieldFill.INSERT)
     @DateTimeFormat
     @JsonFormat
-    private LocalDateTime createTime;
+    private Date createTime;
 
     /**
      * 更新人ID
@@ -72,7 +72,7 @@ public class BaseEntity implements Serializable {
     @DateTimeFormat
     @JsonFormat
     @TableField(fill = FieldFill.UPDATE)
-    private LocalDateTime updateTime;
+    private Date updateTime;
 
     public String getId() {
         return id;
@@ -114,13 +114,7 @@ public class BaseEntity implements Serializable {
         this.createBy = createBy;
     }
 
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
 
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
 
     public String getUpdateBy() {
         return updateBy;
@@ -130,11 +124,19 @@ public class BaseEntity implements Serializable {
         this.updateBy = updateBy;
     }
 
-    public LocalDateTime getUpdateTime() {
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(LocalDateTime updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 }

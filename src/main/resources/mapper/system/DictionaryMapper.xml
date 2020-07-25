@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sofast.system.mapper.RoleMapper">
+<mapper namespace="com.sofast.system.mapper.DictionaryMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.sofast.system.entity.Role">
+    <resultMap id="BaseResultMap" type="com.sofast.system.entity.Dictionary">
     <result column="id" property="id" />
-    <result column="versions" property="versions" />
     <result column="description" property="description" />
+    <result column="versions" property="versions" />
     <result column="delete_flag" property="deleteFlag" />
     <result column="create_by" property="createBy" />
     <result column="create_time" property="createTime" />
     <result column="update_by" property="updateBy" />
     <result column="update_time" property="updateTime" />
+        <result column="module" property="module" />
+        <result column="type" property="type" />
         <result column="name" property="name" />
-        <result column="code" property="code" />
+        <result column="parent_id" property="parentId" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id,
-        versions,
         description,
+        versions,
         delete_flag,
         create_by,
         create_time,
         update_by,
         update_time,
+        module,
+        type,
         name,
-        code
+        parent_id
     </sql>
 
     <!-- 通用查询带t结果列 -->
     <sql id="Base_table_Column_List">
         t.id,
-        t.versions,
         t.description,
+        t.versions,
         t.delete_flag,
         t.create_by,
         t.create_time,
         t.update_by,
         t.update_time,
+        t.module,
+        t.type,
         t.name,
-        t.code
+        t.parent_id
     </sql>
-
-    <select id="selectListByUserId" resultMap="BaseResultMap">
-        select <include refid="Base_Column_List"/>
-        from t_system_role
-        where id in (select role_id from t_system_user_role where user_id = #{userId})
-    </select>
 
 </mapper>
